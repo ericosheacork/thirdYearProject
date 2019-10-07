@@ -1,2 +1,2 @@
 # thirdYearProject
-Third Year Project Medical App
+Third Year Project Mediscreen App
