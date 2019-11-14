@@ -7,7 +7,7 @@ a{
 }
 
 form{
-  align-self: center;
+  display: inline-block;
 }
 
 .portals{
