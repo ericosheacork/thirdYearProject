@@ -8,14 +8,14 @@
   <body>
     <h1>Welcome Doctor</h1>
     <h2>Register</h2>
-    <form class="doctor.html" action="index.html" method="post">
+    <form class="doctor.html" action="index.html" method="post" id="register_form">
       Email:<br>
-      <input type="text" name="email" value=""><br>
+      <input type="text" name="email" value="" id="signup_email"><br>
       Password:<br>
-      <input type="text" name="password" value=""><br>
+      <input type="text" name="password" value="" id="signup_password"><br>
       Repeat Password:<br>
       <input type="text" name="repeat" value=""><br>
-      <button type="button" name="register">Register</button>
+      <button type="button" name="register" id="register">Register</button>
     </form>
     <h2>Login</h2>
     <form class="doctor.html" action="index.html" method="post">
@@ -25,6 +25,10 @@
       <input type="text" name="password" value=""><br>
       <button type="button" name="login">Login</button>
     </form>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
     <script src="doctor_credentials.js"></script>
   </body>
 </html>

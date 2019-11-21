@@ -1,4 +1,4 @@
-
+//initialize firebase
 var firebaseConfig = {
   apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
   authDomain: "mediscreen-674eb.firebaseapp.com",
@@ -10,3 +10,16 @@ var firebaseConfig = {
   measurementId: "G-FCP7TQ40TP"
 };
 firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const signupForm = document.querySelector('#register_form');
+signupForm.addEventListener('register', (e) => {
+
+  const email = signupForm['signup_email'].value;
+  const password = signupForm['signup_password'].value;
+
+  auth.createUserWithEmailAndPassword(email,password).then(cred =>{
+    console.log(cred);
+  })
+})
