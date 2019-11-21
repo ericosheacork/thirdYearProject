@@ -9,6 +9,7 @@ signupForm.addEventListener('register_btn', (e) => {
   // sign up the user
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
     console.log(cred);
+
     // close the signup modal & reset form
   });
 });
