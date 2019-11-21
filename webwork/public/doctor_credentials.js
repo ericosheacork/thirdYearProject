@@ -1,4 +1,4 @@
-
+//initialize firebase
 var firebaseConfig = {
   apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
   authDomain: "mediscreen-674eb.firebaseapp.com",
@@ -10,3 +10,5 @@ var firebaseConfig = {
   measurementId: "G-FCP7TQ40TP"
 };
 firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth()
