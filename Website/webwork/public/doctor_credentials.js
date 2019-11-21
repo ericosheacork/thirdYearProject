@@ -11,4 +11,15 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth()
+const auth = firebase.auth();
+
+const signupForm = document.querySelector('#register_form');
+signupForm.addEventListener('register', (e) => {
+
+  const email = signupForm['signup_email'].value;
+  const password = signupForm['signup_password'].value;
+
+  auth.createUserWithEmailAndPassword(email,password).then(cred =>{
+    console.log(cred);
+  })
+})
