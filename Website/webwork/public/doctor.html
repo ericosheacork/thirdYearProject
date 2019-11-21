@@ -9,7 +9,7 @@
   <body>
     <h1>Welcome Doctor</h1>
     <h2>Register</h2>
-    <form id="register_form" method="post">
+    <form class="doctor.html" action="index.html" method="post">
       Email:<br>
       <input type="text" id="signup_email"><br>
       Password:<br>
@@ -22,10 +22,10 @@
 
     <form class="doctor.html" action="index.html" method="post">
       Email:<br>
-      <input type="text" name="email" value=""><br>
+      <input type="text" id="login_email"><br>
       Password:<br>
-      <input type="text" name="password" value=""><br>
-      <button type="button" name="login">Login</button>
+      <input type="text" id="login_password"><br>
+      <button id="login_btn">Login</button>
     </form>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
@@ -47,15 +47,28 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      const email = document.getElementById('signup_email').value;
-      const password = document.getElementById('signup_password').value;
-      const registerbut = document.getElementById('register_btn').value;
-      registerbut.addEventListener('click', e => {
-        const auth = firebase.auth();
-        const promise = auth.createUserWithEmailAndPassword(email, password);
-        promise.catch(e => console.log(e message));
+
+      const registerbut = document.getElementById('register_btn');
+      const loginbut = document.getElementById('login_btn');
+      const auth = firebase.auth();
+
+      loginbut.addEventListener('click', e => {
+        const loginemail = document.getElementById('login_email').value;
+        const loginpassword = document.getElementById('login_password').value;
+        console.log(loginemail,loginpassword);
+        const promise = auth.signInWithEmailAndPassword(loginemail,loginpassword);
+        promise.catch(e => console.log(e.message));
       });
-      firebase.auth().onAuthStateChange(fireBaseUser => {
+
+      registerbut.addEventListener('click', e => {
+        const email = document.getElementById('signup_email').value;
+        const password = document.getElementById('signup_password').value;
+        console.log(email,password);
+        const promise = auth.createUserWithEmailAndPassword(email, password);
+        promise.catch(e => console.log(e.message));
+      });
+
+      firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
         }else{
