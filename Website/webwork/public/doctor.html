@@ -8,16 +8,17 @@
   <body>
     <h1>Welcome Doctor</h1>
     <h2>Register</h2>
-    <form class="doctor.html" action="index.html" method="post" id="register_form">
+    <form class="doctor.html" id="register_form">
       Email:<br>
-      <input type="text" name="email" value="" id="signup_email"><br>
+      <input type="text" name="email" id="signup_email"><br>
       Password:<br>
-      <input type="text" name="password" value="" id="signup_password"><br>
+      <input type="text" name="password" id="signup_password"><br>
       Repeat Password:<br>
-      <input type="text" name="repeat" value=""><br>
-      <button type="button" name="register" id="register">Register</button>
+      <input type="text" name="repeat" ><br>
+      <button id="register_btn">Register</button>
     </form>
     <h2>Login</h2>
+
     <form class="doctor.html" action="index.html" method="post">
       Email:<br>
       <input type="text" name="email" value=""><br>
@@ -29,6 +30,26 @@
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
-    <script src="doctor_credentials.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
+        authDomain: "mediscreen-674eb.firebaseapp.com",
+        databaseURL: "https://mediscreen-674eb.firebaseio.com",
+        projectId: "mediscreen-674eb",
+        storageBucket: "mediscreen-674eb.appspot.com",
+        messagingSenderId: "292545820886",
+        appId: "1:292545820886:web:9fe5753b475a2f524b3177",
+        measurementId: "G-FCP7TQ40TP"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+      const auth = firebase.auth();
+
+    </script>
+    <script src="auth.js"></script>
   </body>
 </html>
