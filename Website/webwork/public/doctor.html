@@ -4,29 +4,31 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <title>Doctor Protal</title>
-
   </head>
+  <!-- The main login/register page for doctors -->
   <body>
     <h1>Welcome Doctor</h1>
+
     <h2>Register</h2>
-    <form class="doctor.html" action="doctorinfo.html" method="post">
-      Email:<br>
+    <div id="register_doctor_form">
+      <label>Email:</label><br>
       <input type="text" id="signup_email"><br>
-      Password:<br>
+      <label>Password:</label><br>
       <input type="text" id="signup_password"><br>
-      Repeat Password:<br>
+      <label>Repeat Password:</label><br>
       <input type="text" name="repeat" ><br>
       <button id="register_btn">Register</button>
-    </form>
-    <h2>Login</h2>
+    </div>
 
-    <form class="doctor.html" action="doctor.html" method="post">
+    <h2>Login</h2>
+    <div id="login_doctor_form">
       Email:<br>
       <input type="text" id="login_email"><br>
       Password:<br>
       <input type="text" id="login_password"><br>
       <button id="login_btn">Login</button>
-    </form>
+    </div>
+
     <button id="signout_btn">Sign Out</button>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
@@ -77,10 +79,10 @@
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
-          signoutbut.classList.remove('hide');
+          signoutbut.style.display = "block";
         }else{
           console.log('not logged in');
-          signoutbut.classList.add('hide');
+          signoutbut.style.display = "none";
         }
       });
     </script>
