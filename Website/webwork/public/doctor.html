@@ -2,25 +2,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <title>Doctor Protal</title>
+    <link rel="stylesheet" href="login-styles.css" type="text/css">
+    <title>Doctor Portal</title>
   </head>
   <!-- The main login/register page for doctors -->
   <body>
     <h1>Welcome Doctor</h1>
 
     <h2>Register</h2>
+<div id = "registerbox">
     <div id="register_doctor_form">
       <label>Email:</label><br>
       <input type="text" id="signup_email"><br>
       <label>Password:</label><br>
       <input type="text" id="signup_password"><br>
       <label>Repeat Password:</label><br>
-      <input type="text" name="repeat" ><br>
+      <input type="text" id="repeat" ><br>
       <button id="register_btn">Register</button>
     </div>
+  </div>
+
 
     <h2>Login</h2>
+<div id ="loginbox">
     <div id="login_doctor_form">
       Email:<br>
       <input type="text" id="login_email"><br>
@@ -28,8 +32,8 @@
       <input type="text" id="login_password"><br>
       <button id="login_btn">Login</button>
     </div>
+</div>
 
-    <button id="signout_btn">Sign Out</button>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>

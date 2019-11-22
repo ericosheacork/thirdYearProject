@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov  4 17:03:57 2019
+
+@author: cianosullivan
+"""
+'''
+from tensorflow import lite
+converter = lite.TFLiteConverter.from_keras_model_file('model.h5')
+tfmodel = converter.convert()
+open("model.tflite","wb").write(tfmodel)
+'''
+import tensorflow as tf
+
+new_model= tf.keras.models.load_model(filepath="DiabetesModel.h5")
+
+tflite_converter = tf.lite.TFLiteConverter.from_keras_model(new_model)
+tflite_model = tflite_converter.convert()
+open("DiabetesModel.tflite", "wb").write(tflite_model)
