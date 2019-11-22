@@ -9,7 +9,7 @@
   <body>
     <h1>Welcome Doctor</h1>
     <h2>Register</h2>
-    <form class="doctor.html" action="index.html" method="post">
+    <form class="doctor.html" action="doctorinfo.html" method="post">
       Email:<br>
       <input type="text" id="signup_email"><br>
       Password:<br>
@@ -20,13 +20,14 @@
     </form>
     <h2>Login</h2>
 
-    <form class="doctor.html" action="index.html" method="post">
+    <form class="doctor.html" action="doctor.html" method="post">
       Email:<br>
       <input type="text" id="login_email"><br>
       Password:<br>
       <input type="text" id="login_password"><br>
       <button id="login_btn">Login</button>
     </form>
+    <button id="signout_btn" class="hide"></button>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
@@ -50,6 +51,7 @@
 
       const registerbut = document.getElementById('register_btn');
       const loginbut = document.getElementById('login_btn');
+      const signoutbut = document.getElementById('signout_btn');
       const auth = firebase.auth();
 
       loginbut.addEventListener('click', e => {
@@ -68,11 +70,17 @@
         promise.catch(e => console.log(e.message));
       });
 
+      signoutbut.addEventListener('click', e => {
+        firebase.auth().signOut();
+      });
+
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
+          signoutbut.classList.remove('hide');
         }else{
           console.log('not logged in');
+          signoutbut.classList.add('hide');
         }
       });
     </script>
