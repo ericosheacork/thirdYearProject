@@ -2,27 +2,36 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <title>Insurer</title>
+    <link rel="stylesheet" href="login-insurer.css" type="text/css">
+    <title>Insurer Portal</title>
   </head>
   <body>
     <h1>Welcome Insurers</h1>
     <h2>Register</h2>
-    <form class="doctor.html" action="index.html" method="post">
-      Email:<br>
-      <input type="text" name="email" value="">
-      Password:<br>
-      <input type="text" name="password" value="">
-      Repeat Password:<br>
-      <input type="text" name="repeat" value="">
-    </form>
-    <h2>Login</h2>
-    <form class="doctor.html" action="index.html" method="post">
-      Email:<br>
-      <input type="text" name="email" value="">
-      Password:<br>
-      <input type="text" name="password" value="">
-    </form>
+
+<div id = "registerbox">
+  <div id = "register_insurer_form">
+    <label>Email:</label><br>
+    <input type="text" id="signup_email"><br>
+    <label>Password:</label><br>
+    <input type="text" id="signup_password"><br>
+    <label>Repeat Password:</label><br>
+    <input type="text" id="repeat" ><br>
+    <button id="register_btn">Register</button>
+  </div>
+</div>
+
+<h2>Login</h2>
+<div id ="loginbox">
+<div id="login_insurer_form">
+  Email:<br>
+  <input type="text" id="login_email"><br>
+  Password:<br>
+  <input type="text" id="login_password"><br>
+  <button id="login_btn">Login</button>
+</div>
+</div>
+
 
   </body>
 </html>
