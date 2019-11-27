@@ -1,0 +1,35 @@
+#portals
+{
+
+}
+
+body
+{
+  background: url(https://wallpaperplay.com/walls/full/2/5/1/14019.jpg)
+
+}
+
+h1
+{
+  text-align: center;
+  text-decoration-style: solid;
+}
+
+h2
+{
+  text-align: center;
+
+}
+
+div
+{
+  height: inherit;
+  align-content: center;
+  width:auto;
+  text-align: center;
+}
+
+footer
+{
+  text-align: center;
+}
