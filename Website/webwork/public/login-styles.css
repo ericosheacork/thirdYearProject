@@ -1,0 +1,74 @@
+h2 , h1
+{
+  text-align: center;
+}
+
+
+img{
+  border-color: blue;
+  border-width: 3px;
+}
+body
+{
+  background: url(https://images.pexels.com/photos/48604/pexels-photo-48604.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
+}
+
+
+
+
+#registerbox
+{
+
+
+  height: inherit;
+  align-content: center;
+  width:auto;
+  text-align: center;
+}
+
+#register_doctor_form , #login_doctor_form
+{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#signup_email , #signup_password , #repeat
+{
+  width: 200px;
+  height: 25px;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+#register_btn , #login_btn
+{
+    margin-top: 15px;
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    border-color: black;
+    border-style: ridge;
+    color: black;
+    background-color: floralwhite;
+}
+
+
+
+#loginbox
+{
+  height: inherit;
+  align-content: center;
+  width: auto;
+  text-align: center;
+}
+
+#login_email , #login_password
+{
+  width: 200px;
+  height: 25px;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 10px;
+}
