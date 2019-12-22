@@ -10,7 +10,8 @@
     <h1>Welcome Doctor</h1>
 
     <h2>Register</h2>
-<div id = "registerbox">
+    <button type="button" id="goto_registration">Register Now</button>
+<!--<div id = "registerbox">
     <div id="register_doctor_form">
       <label>Email:</label><br>
       <input type="text" id="signup_email"><br>
@@ -20,7 +21,7 @@
       <input type="text" id="repeat" ><br>
       <button id="register_btn">Register</button>
     </div>
-  </div>
+  </div>-->
 
 
     <h2>Login</h2>
@@ -55,11 +56,15 @@
       firebase.initializeApp(firebaseConfig);
 
 
-      const registerbut = document.getElementById('register_btn');
+      //const registerbut = document.getElementById('register_btn');
       const loginbut = document.getElementById('login_btn');
       const signoutbut = document.getElementById('signout_btn');
+      const registerredirect = document.getElementById('goto_registration');
       const auth = firebase.auth();
 
+      registerredirect.addEventListener('click', e => {
+        window.location = 'doctorinfo.html';
+      });
       loginbut.addEventListener('click', e => {
         const loginemail = document.getElementById('login_email').value;
         const loginpassword = document.getElementById('login_password').value;
@@ -68,13 +73,13 @@
         promise.catch(e => console.log(e.message));
       });
 
-      registerbut.addEventListener('click', e => {
+      /**registerbut.addEventListener('click', e => {
         const email = document.getElementById('signup_email').value;
         const password = document.getElementById('signup_password').value;
         console.log(email,password);
         const promise = auth.createUserWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
-      });
+      });**/
 
       /**signoutbut.addEventListener('click', e => {
         firebase.auth().signOut();

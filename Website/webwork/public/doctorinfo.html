@@ -6,17 +6,77 @@
   </head>
   <body>
     <h1>Enter your Personal Information</h1>
-    <form class="" action="index.html" method="post">
+    <!--<form class="" action="index.html" method="post">
       First Name:<input type="text" name="firstname" value="firstname"><br>
       Last Name:<input type="text" name="lastname" value="lastname"><br>
       Address:<input type="text" name="address" value="address"><br>
       Mobile Number:<input type="text" name="mobileno" value="mobileno"><br>
       Institute Name:<input type="text" name="institutename" value="institutename"><br>
       <button type="button" name="submit">Submit</button>
-    </form>
+    </form>-->
+    <div id = "registerbox">
+        <div id="register_doctor_form">
+          <label>First Name:</label><input type="text" id="firstname"><br>
+          <label>Last Name:</label><input type="text" id="lastname"><br>
+          <label>Age:</label><input type="text" id="age"><br>
+          <label>Mobile Number:</label><input type="text" id="mobileno"><br>
+          <label>Email:</label><input type="text" id="signup_email"><br>
+          <label>Password:</label><input type="text" id="signup_password"><br>
+          <label>Repeat Password:</label><input type="text" id="repeat" ><br>
+          <button id="register_btn">Register</button>
+        </div>
+      </div>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+    <script type="text/javascript">
+      var firebaseConfig = {
+        apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
+        authDomain: "mediscreen-674eb.firebaseapp.com",
+        databaseURL: "https://mediscreen-674eb.firebaseio.com",
+        projectId: "mediscreen-674eb",
+        storageBucket: "mediscreen-674eb.appspot.com",
+        messagingSenderId: "292545820886",
+        appId: "1:292545820886:web:9fe5753b475a2f524b3177",
+        measurementId: "G-FCP7TQ40TP"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      //Getting the button reference
+      const registerbut = document.getElementById('register_btn');
+
+      registerbut.addEventListener('click', e => {
+        //Getting all the field references to insert into databse
+        const firstname = document.getElementById('firstname').value
+        const lastname = document.getElementById('lastname').value
+        const mobileno = document.getElementById('mobileno').value
+        const age = document.getElementById('age').value
+        const email = document.getElementById('signup_email').value;
+        const password = document.getElementById('signup_password').value;
+        const reppassword = document.getElementById('repeat').value
+
+        console.log(email,password);
+        const promise = auth.createUserWithEmailAndPassword(email, password);
+        db.collection('doctors').add({
+          Age: age,
+          Doctor_No: Math.floor(Math.random() * 1000) + 1,
+          Email: email,
+          Emergency_Number: mobileno,
+          First_Name: firstname,
+          Last_Name: lastname,
+          Password: password
+        }).then(()=>{
+          window.location = 'doctor.html';
+        })
+        promise.catch(e => console.log(e.message));
+      });
+
+
+    </script>
   </body>
 </html>
