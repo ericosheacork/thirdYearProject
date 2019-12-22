@@ -60,20 +60,21 @@
         const password = document.getElementById('signup_password').value;
         const reppassword = document.getElementById('repeat').value
 
+
         console.log(email,password);
-        const promise = auth.createUserWithEmailAndPassword(email, password);
-        db.collection('doctors').add({
-          Age: age,
-          Doctor_No: Math.floor(Math.random() * 1000) + 1,
-          Email: email,
-          Emergency_Number: mobileno,
-          First_Name: firstname,
-          Last_Name: lastname,
-          Password: password
+        auth.createUserWithEmailAndPassword(email, password).then(cred =>{
+          return db.collection('doctors').doc(cred.user.uid).set({
+            Age: age,
+            Doctor_No: Math.floor(Math.random() * 1000) + 1,
+            Email: email,
+            Emergency_Number: mobileno,
+            First_Name: firstname,
+            Last_Name: lastname,
+            Password: password
+          });
         }).then(()=>{
           window.location = 'doctor.html';
-        })
-        promise.catch(e => console.log(e.message));
+        });
       });
 
 
