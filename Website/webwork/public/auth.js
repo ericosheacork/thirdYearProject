@@ -1,15 +1,16 @@
-const signupForm = document.querySelector('#register_form');
-signupForm.addEventListener('register_btn', (e) => {
-  e.preventDefault();
+const patientList = document.getElementById('patient_list');
 
-  // get user info
-  const email = signupForm['signup-email'].value;
-  const password = signupForm['signup-password'].value;
-  console.log(email,password);
-  // sign up the user
-  auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred);
-
-    // close the signup modal & reset form
+const outputPatients = (data) =>{
+  let html = '';
+  data.forEach(doc =>{
+    const patient = doc.data();
+    const entry = `<li>
+    <div id="patient_fname">${patient.First_Name}</div>
+    <div id="patient_lname">${patient.Last_Name}</div>
+    <div id="patient_email">${patient.Email}</div>
+    </li>`;
+    html += entry;
+    //console.log(patient);
   });
-});
+  patientList.innerHTML = html;
+}
