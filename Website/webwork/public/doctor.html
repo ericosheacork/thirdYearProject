@@ -30,7 +30,7 @@
       <input type="text" id="login_email"><br>
       Password:<br>
       <input type="text" id="login_password"><br>
-      <a href="doctor_profile.html"><button id="login_btn">Login</button></a>
+      <button id="login_btn">Login</button>
     </div>
 </div>
 
@@ -76,17 +76,17 @@
         promise.catch(e => console.log(e.message));
       });
 
-      signoutbut.addEventListener('click', e => {
+      /**signoutbut.addEventListener('click', e => {
         firebase.auth().signOut();
-      });
+      });**/
 
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
-          signoutbut.style.display = "block";
+          window.location = 'doctor_profile.html';
         }else{
           console.log('not logged in');
-          signoutbut.style.display = "none";
+          //signoutbut.style.display = "none";
         }
       });
     </script>

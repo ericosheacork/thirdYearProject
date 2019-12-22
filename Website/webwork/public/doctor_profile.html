@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Welcome Doctor</h1>
-
+    <button id="signout_btn">Sign Out</button>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
@@ -31,6 +31,7 @@
 
       signoutbut.addEventListener('click', e => {
         firebase.auth().signOut();
+
       });
 
       firebase.auth().onAuthStateChanged(fireBaseUser => {
@@ -40,6 +41,7 @@
         }else{
           console.log('not logged in');
           signoutbut.style.display = "none";
+          window.location = 'doctor.html';
         }
       });
     </script>
