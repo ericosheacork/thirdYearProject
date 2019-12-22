@@ -36,10 +36,7 @@
       const auth = firebase.auth();
       const db = firebase.firestore();
 
-      db.collection('patients').get().then(snapshot =>{
-        //console.log(snapshot.docs);
-        outputPatients(snapshot.docs);
-      })
+
       //Signs user out
       signoutbut.addEventListener('click', e => {
         firebase.auth().signOut();
@@ -49,6 +46,10 @@
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
+          db.collection('doctors/'+fireBaseUser.uid+'/Patient_List').get().then(snapshot =>{
+            //console.log(snapshot.docs);
+            outputPatients(snapshot.docs);
+          })
           //If the user is signed in, make the signout button visible
           signoutbut.style.display = "block";
         }else{
