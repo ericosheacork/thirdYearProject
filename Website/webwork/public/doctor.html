@@ -24,6 +24,7 @@
       <button id="login_btn">Login</button>
     </div>
 </div>
+  <button type="button" id="back_to_home">Home</button>
 
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
@@ -48,13 +49,18 @@
 
       //const registerbut = document.getElementById('register_btn');
       const loginbut = document.getElementById('login_btn');
-      const signoutbut = document.getElementById('signout_btn');
+      const back = document.getElementById('back_to_home');
       const registerredirect = document.getElementById('goto_registration');
       const auth = firebase.auth();
+
+      back.addEventListener('click', e => {
+        window.location = 'index.html';
+      });
 
       registerredirect.addEventListener('click', e => {
         window.location = 'doctorinfo.html';
       });
+
       loginbut.addEventListener('click', e => {
         const loginemail = document.getElementById('login_email').value;
         const loginpassword = document.getElementById('login_password').value;
