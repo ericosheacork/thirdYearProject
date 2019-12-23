@@ -57,7 +57,7 @@
           console.log(email,password);
           auth.createUserWithEmailAndPassword(email, password).then(cred =>{
             return db.collection('insurers').doc(cred.user.uid).set({
-              Employee_ID: Math.floor(Math.random() * 1000) + 1,
+              Employee_ID: Math.floor(Math.random() * 9999) + 1000,
               Email: email,
               Department: dept,
               First_Name: firstname,
