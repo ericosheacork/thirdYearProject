@@ -42,7 +42,7 @@ body
 
 }
 
-#register_btn , #login_btn, #goto_registration
+#register_btn , #login_btn, #goto_registration, #back_to_home
 {
     margin-top: 15px;
     height: 25px;
