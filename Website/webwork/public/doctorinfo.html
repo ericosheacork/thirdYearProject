@@ -6,14 +6,6 @@
   </head>
   <body>
     <h1>Enter your Personal Information</h1>
-    <!--<form class="" action="index.html" method="post">
-      First Name:<input type="text" name="firstname" value="firstname"><br>
-      Last Name:<input type="text" name="lastname" value="lastname"><br>
-      Address:<input type="text" name="address" value="address"><br>
-      Mobile Number:<input type="text" name="mobileno" value="mobileno"><br>
-      Institute Name:<input type="text" name="institutename" value="institutename"><br>
-      <button type="button" name="submit">Submit</button>
-    </form>-->
     <div id = "registerbox">
         <div id="register_doctor_form">
           <label>First Name:</label><input type="text" id="firstname"><br>
@@ -65,7 +57,7 @@
         auth.createUserWithEmailAndPassword(email, password).then(cred =>{
           return db.collection('doctors').doc(cred.user.uid).set({
             Age: age,
-            Doctor_No: Math.floor(Math.random() * 1000) + 1,
+            Doctor_Code: (Math.floor(Math.random() * 9999) + 1000).toString(),
             Email: email,
             Emergency_Number: mobileno,
             First_Name: firstname,
