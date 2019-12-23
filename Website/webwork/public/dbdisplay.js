@@ -1,7 +1,9 @@
+//Getting a reference to patient data in Firestore.
 const patientList = document.getElementById('patient_list');
-
+//Outputs the data to the html page.
 const outputPatients = (data) =>{
   let html = '';
+  //Cycles through all documents in the collection
   data.forEach(doc =>{
     const patient = doc.data();
     const entry = `<li>
@@ -17,5 +19,6 @@ const outputPatients = (data) =>{
     </li>`;
     html += entry;
   });
+  //output's the data to html page.
   patientList.innerHTML = html;
 }

@@ -5,14 +5,15 @@
     <link rel="stylesheet" href="login-insurer.css" type="text/css">
     <title>Insurer Portal</title>
   </head>
+  <!-- The main login/register page for insurers -->
   <body>
     <h1>Welcome Insurers</h1>
     <h2>Register</h2>
-
+<!--To register a new user, the user is taken to a registration page-->
 <div id = "registerbox">
     <button id="goto_registration">Register Now</button>
 </div>
-
+<!--Existing user login-->
 <h2>Login</h2>
 <div id ="loginbox">
 <div id="login_insurer_form">
@@ -22,6 +23,7 @@
   <input type="text" id="login_password"><br>
   <button id="login_btn">Login</button>
 </div>
+<!--Allows user to return to the homepage-->
 <button type="button" id="back_to_home">Home</button>
 </div>
 
@@ -45,12 +47,13 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-
+  //Getting necessary components
   const loginbut = document.getElementById('login_btn');
   const registerredirect = document.getElementById('goto_registration');
   const back = document.getElementById('back_to_home');
   const auth = firebase.auth();
 
+  //Redirect the user back to the homepage
   back.addEventListener('click', e => {
     window.location = 'index.html';
   });
@@ -58,7 +61,7 @@
   registerredirect.addEventListener('click', e => {
     window.location = 'insurerinfo.html';
   });
-
+  //logs the insurer in
   loginbut.addEventListener('click', e => {
     const loginemail = document.getElementById('login_email').value;
     const loginpassword = document.getElementById('login_password').value;
@@ -66,7 +69,7 @@
     const promise = auth.signInWithEmailAndPassword(loginemail,loginpassword);
     promise.catch(e => console.log(e.message));
   });
-
+  //If a insurer is logged in, redirect them to their personal profile
   firebase.auth().onAuthStateChanged(fireBaseUser => {
     if(fireBaseUser){
       console.log(fireBaseUser);

@@ -10,11 +10,13 @@
     <h1>Welcome Doctor</h1>
 
     <h2>Register</h2>
+    <!--To register a new user, the user is taken to a registration page-->
     <div id = "registerbox">
       <button type="button" id="goto_registration">Register Now</button>
     </div>
 
     <h2>Login</h2>
+    <!--Existing user login-->
 <div id ="loginbox">
     <div id="login_doctor_form">
       Email:<br>
@@ -23,16 +25,17 @@
       <input type="text" id="login_password"><br>
       <button id="login_btn">Login</button>
     </div>
+    <!--Allows user to return to the homepage-->
     <button type="button" id="back_to_home">Home</button>
 </div>
-
+  <!--Require firebase scripts-->
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 
     <script type="text/javascript">
-      // Your web app's Firebase configuration
+      //Web app's Firebase configuration
       var firebaseConfig = {
         apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
         authDomain: "mediscreen-674eb.firebaseapp.com",
@@ -46,21 +49,21 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-
-      //const registerbut = document.getElementById('register_btn');
+      //Getting necessary components
       const loginbut = document.getElementById('login_btn');
       const back = document.getElementById('back_to_home');
       const registerredirect = document.getElementById('goto_registration');
       const auth = firebase.auth();
 
+      //Redirect the user back to the homepage
       back.addEventListener('click', e => {
         window.location = 'index.html';
       });
-
+      //Directs user to registration page
       registerredirect.addEventListener('click', e => {
         window.location = 'doctorinfo.html';
       });
-
+      //logs the doctor in
       loginbut.addEventListener('click', e => {
         const loginemail = document.getElementById('login_email').value;
         const loginpassword = document.getElementById('login_password').value;
@@ -68,14 +71,13 @@
         const promise = auth.signInWithEmailAndPassword(loginemail,loginpassword);
         promise.catch(e => console.log(e.message));
       });
-
+      //If a doctor is logged in, redirect them to their personal profile
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
           window.location = 'doctor_profile.html';
         }else{
           console.log('not logged in');
-          //signoutbut.style.display = "none";
         }
       });
     </script>

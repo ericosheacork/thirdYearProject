@@ -5,23 +5,26 @@
     <title>Admin Page</title>
   </head>
   <body>
+    <!--An admin can make a another user an admin-->
     <div id="admin_creator" style="display=none">
       Email:<input type="text" id="chosen_email"><br>
       <button type="button" id="make_admin">Make Admin</button>
     </div>
+    <!--Takes in login credentials from an admin-->
     <div id="login_admin">
       Email:<input type="text" id="adm_email"><br>
       Password:<input type="text" id="adm_password"><br>
       <button type="button" id="ad_login">Login Admin</button>
     </div>
     <button type="button" id="admin_signout">Log out</button>
+    <!--Scripts needed for firebase functionality-->
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
     <script type="text/javascript">
-      // Your web app's Firebase configuration
+      //web app's Firebase configuration
       var firebaseConfig = {
         apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
         authDomain: "mediscreen-674eb.firebaseapp.com",
@@ -34,45 +37,51 @@
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
-
+      //for easy reference
       const auth = firebase.auth();
       const functions = firebase.functions();
+      //Getting all the inputs and buttons in the document
       const adminCreate = document.getElementById('admin_creator');
       const makeadmin = document.getElementById('make_admin');
       const loginadmin = document.getElementById('ad_login');
       const signoutbut = document.getElementById('admin_signout');
+      //function to make user an admin
       makeadmin.addEventListener('click',e=>{
         const adminEmail = document.getElementById('chosen_email').value;
+        //Calling the admin function we created
         const addAdminRole = functions.httpsCallable('addAdminRole');
         addAdminRole({email: adminEmail}).then(result =>{
           console.log(result);
         });
       });
+      //logs in the admin
       loginadmin.addEventListener('click',e=>{
         const loginEmail = document.getElementById('adm_email').value;
         const loginPassword = document.getElementById('adm_password').value;
         const promise = auth.signInWithEmailAndPassword(loginEmail,loginPassword);
         promise.catch(e => console.log(e.message));
       });
+      //logs out the admin
       signoutbut.addEventListener('click', e => {
         firebase.auth().signOut();
 
       });
+      //Detects to see if there is an admin user signed in.
       firebase.auth().onAuthStateChanged(adminUser => {
         if(adminUser){
           adminUser.getIdTokenResult().then(idTokenResult =>{
             adminUser.admin = idTokenResult.claims.admin;
             console.log(idTokenResult.claims.admin);
+            //If the user is an admin, the user can assign admin privilleges to another user.
             if(adminUser.admin){
+              //Make the "make admin section" visible for the logged in admin
               adminCreate.style.display = "block";
             }
-
           });
-
         }else{
           console.log('not logged in');
+          //Makes sure the "make admin section" invisible for users not logged in.
           adminCreate.style.display = "none";
-          //signoutbut.style.display = "none";
         }
       });
     </script>

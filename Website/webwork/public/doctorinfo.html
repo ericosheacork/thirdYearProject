@@ -6,6 +6,7 @@
   </head>
   <body>
     <h1>Enter your Personal Information</h1>
+    <!--Doctor enters details-->
     <div id = "registerbox">
         <div id="register_doctor_form">
           <label>First Name:</label><input type="text" id="firstname"><br>
@@ -55,8 +56,11 @@
 
         console.log(email,password);
         auth.createUserWithEmailAndPassword(email, password).then(cred =>{
+          //We create a new doctor and add him to the database with a document id
+          //matching the user id as opposed to firebase creating a unique id automatically
           return db.collection('doctors').doc(cred.user.uid).set({
             Age: age,
+            //Doctor code is a unique random 4 digit number.
             Doctor_Code: (Math.floor(Math.random() * 9999) + 1000).toString(),
             Email: email,
             Emergency_Number: mobileno,
@@ -65,6 +69,7 @@
             Password: password
           });
         }).then(()=>{
+          //Redirect the doctor to the main doctor login page
           window.location = 'doctor.html';
         });
       });

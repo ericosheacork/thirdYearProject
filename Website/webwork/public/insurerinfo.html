@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Enter your Personal Information</h1>
-
+    <!--Insurer enters details-->
     <div id = "registerbox">
         <div id="register_insurer_form">
           <label>First Name:</label><input type="text" id="firstname"><br>
@@ -56,7 +56,10 @@
 
           console.log(email,password);
           auth.createUserWithEmailAndPassword(email, password).then(cred =>{
+            //We create a new insurer and add him to the database with a document id
+            //matching the user id as opposed to firebase creating a unique id automatically
             return db.collection('insurers').doc(cred.user.uid).set({
+              //Insurer ID is a unique random 4 digit number.
               Employee_ID: Math.floor(Math.random() * 9999) + 1000,
               Email: email,
               Department: dept,
@@ -65,6 +68,7 @@
               Password: password
             });
           }).then(()=>{
+            //Redirect the insurer to the main doctor login page
             window.location = 'insurer.html';
           });
         });
