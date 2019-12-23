@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <div id="admin_creator" style="display=none">
+      Email:<input type="text" id="chosen_email"><br>
+      <button type="button" id="make_admin">Make Admin</button>
+    </div>
+    <div id="login_admin">
+      Email:<input type="text" id="adm_email"><br>
+      Password:<input type="text" id="adm_password"><br>
+      <button type="button" id="ad_login">Login Admin</button>
+    </div>
+    <button type="button" id="admin_signout">Log out</button>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
+    <script type="text/javascript">
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
+        authDomain: "mediscreen-674eb.firebaseapp.com",
+        databaseURL: "https://mediscreen-674eb.firebaseio.com",
+        projectId: "mediscreen-674eb",
+        storageBucket: "mediscreen-674eb.appspot.com",
+        messagingSenderId: "292545820886",
+        appId: "1:292545820886:web:9fe5753b475a2f524b3177",
+        measurementId: "G-FCP7TQ40TP"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const functions = firebase.functions();
+      const adminCreate = document.getElementById('admin_creator');
+      const makeadmin = document.getElementById('make_admin');
+      const loginadmin = document.getElementById('ad_login');
+      const signoutbut = document.getElementById('admin_signout');
+      makeadmin.addEventListener('click',e=>{
+        const adminEmail = document.getElementById('chosen_email').value;
+        const addAdminRole = functions.httpsCallable('addAdminRole');
+        addAdminRole({email: adminEmail}).then(result =>{
+          console.log(result);
+        });
+      });
+      loginadmin.addEventListener('click',e=>{
+        const loginEmail = document.getElementById('adm_email').value;
+        const loginPassword = document.getElementById('adm_password').value;
+        const promise = auth.signInWithEmailAndPassword(loginEmail,loginPassword);
+        promise.catch(e => console.log(e.message));
+      });
+      signoutbut.addEventListener('click', e => {
+        firebase.auth().signOut();
+
+      });
+      firebase.auth().onAuthStateChanged(adminUser => {
+        if(adminUser){
+          adminUser.getIdTokenResult().then(idTokenResult =>{
+            adminUser.admin = idTokenResult.claims.admin;
+            console.log(idTokenResult.claims.admin);
+            if(adminUser.admin){
+              adminCreate.style.display = "block";
+            }
+
+          });
+
+        }else{
+          console.log('not logged in');
+          adminCreate.style.display = "none";
+          //signoutbut.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
