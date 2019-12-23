@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Doctor Profile</title>
+    <link rel="stylesheet" href="profiles.css" type="text/css">
   </head>
   <body>
 
@@ -10,7 +11,10 @@
     <h2>List of Patients</h2>
     <ul id="patient_list"></ul>
     <p>click here to sign out</p>
-    <button id="signout_btn">Sign Out</button>
+    <div class="signout">
+      <button id="signout_btn">Sign Out</button>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
