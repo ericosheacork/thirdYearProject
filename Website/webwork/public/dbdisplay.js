@@ -10,7 +10,6 @@ const outputPatients = (data) =>{
     <div id="patient_email">Email: ${patient.Email}</div><br>
     </li>`;
     html += entry;
-    //console.log(patient);
   });
   patientList.innerHTML = html;
 }

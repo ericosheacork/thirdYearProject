@@ -13,18 +13,6 @@
     <div id = "registerbox">
       <button type="button" id="goto_registration">Register Now</button>
     </div>
-<!--<div id = "registerbox">
-    <div id="register_doctor_form">
-      <label>Email:</label><br>
-      <input type="text" id="signup_email"><br>
-      <label>Password:</label><br>
-      <input type="text" id="signup_password"><br>
-      <label>Repeat Password:</label><br>
-      <input type="text" id="repeat" ><br>
-      <button id="register_btn">Register</button>
-    </div>
-  </div>-->
-
 
     <h2>Login</h2>
 <div id ="loginbox">
@@ -74,18 +62,6 @@
         const promise = auth.signInWithEmailAndPassword(loginemail,loginpassword);
         promise.catch(e => console.log(e.message));
       });
-
-      /**registerbut.addEventListener('click', e => {
-        const email = document.getElementById('signup_email').value;
-        const password = document.getElementById('signup_password').value;
-        console.log(email,password);
-        const promise = auth.createUserWithEmailAndPassword(email, password);
-        promise.catch(e => console.log(e.message));
-      });**/
-
-      /**signoutbut.addEventListener('click', e => {
-        firebase.auth().signOut();
-      });**/
 
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){

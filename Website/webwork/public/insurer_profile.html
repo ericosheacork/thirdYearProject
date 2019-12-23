@@ -2,10 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Doctor Profile</title>
+    <title>WElcom Insurer</title>
   </head>
   <body>
-
     <h1>Welcome Doctor</h1>
     <h2>List of Patients</h2>
     <ul id="patient_list">
@@ -46,7 +45,7 @@
       firebase.auth().onAuthStateChanged(fireBaseUser => {
         if(fireBaseUser){
           console.log(fireBaseUser);
-          db.collection('doctors/'+fireBaseUser.uid+'/Patient_List').get().then(snapshot =>{
+          db.collection('insurers/'+fireBaseUser.uid+'/Client_List').get().then(snapshot =>{
             //console.log(snapshot.docs);
             outputPatients(snapshot.docs);
           })
@@ -56,10 +55,10 @@
           console.log('not logged in');
           signoutbut.style.display = "none";
           //Redirect user to the main log in page when they log out
-          window.location = 'doctor.html';
+          window.location = 'insurer.html';
         }
       });
     </script>
-    <script src="dbdisplay.js"></script>
+    <script src="insdbdisplay.js"></script>
   </body>
 </html>

@@ -10,15 +10,7 @@
     <h2>Register</h2>
 
 <div id = "registerbox">
-  <div id = "register_insurer_form">
-    <label>Email:</label><br>
-    <input type="text" id="signup_email"><br>
-    <label>Password:</label><br>
-    <input type="text" id="signup_password"><br>
-    <label>Repeat Password:</label><br>
-    <input type="text" id="repeat" ><br>
-    <button id="register_btn">Register</button>
-  </div>
+    <button id="goto_registration">Register Now</button>
 </div>
 
 <h2>Login</h2>
@@ -31,7 +23,51 @@
   <button id="login_btn">Login</button>
 </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
 
+<script type="text/javascript">
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCIrRQLlsAzssCKjevk9AwFloPLrWSCfHk",
+    authDomain: "mediscreen-674eb.firebaseapp.com",
+    databaseURL: "https://mediscreen-674eb.firebaseio.com",
+    projectId: "mediscreen-674eb",
+    storageBucket: "mediscreen-674eb.appspot.com",
+    messagingSenderId: "292545820886",
+    appId: "1:292545820886:web:9fe5753b475a2f524b3177",
+    measurementId: "G-FCP7TQ40TP"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+  const loginbut = document.getElementById('login_btn');
+  const registerredirect = document.getElementById('goto_registration');
+  const auth = firebase.auth();
+
+  registerredirect.addEventListener('click', e => {
+    window.location = 'insurerinfo.html';
+  });
+  loginbut.addEventListener('click', e => {
+    const loginemail = document.getElementById('login_email').value;
+    const loginpassword = document.getElementById('login_password').value;
+    console.log(loginemail,loginpassword);
+    const promise = auth.signInWithEmailAndPassword(loginemail,loginpassword);
+    promise.catch(e => console.log(e.message));
+  });
+
+  firebase.auth().onAuthStateChanged(fireBaseUser => {
+    if(fireBaseUser){
+      console.log(fireBaseUser);
+      window.location = 'insurer_profile.html';
+    }else{
+      console.log('not logged in');
+    }
+  });
+</script>
 
   </body>
 </html>
