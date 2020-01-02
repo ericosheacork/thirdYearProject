@@ -1,4 +1,5 @@
 const patientList = document.getElementById('patient_list');
+const patient_Messages_List = document.getElementById('patient_messages_list');
 
 const outputPatients = (data) =>{
   let html = '';
@@ -17,4 +18,19 @@ const outputPatients = (data) =>{
     html += entry;
   });
   patientList.innerHTML = html;
+}
+
+const outputMessages = (messagedata) =>{
+  let html = '';
+  messagedata.forEach(doc =>{
+    const support = doc.data();
+    const entry = `<li>
+    <div id="message_content">Message Content: ${support.Content}</div>
+    <div id="message_status">Status: ${support.Status}</div>
+    <div id="message_nature">Nature of Subject: ${support.Subject}</div><br>
+
+    </li>`;
+    html += entry;
+  });
+  patient_Messages_List.innerHTML = html;
 }

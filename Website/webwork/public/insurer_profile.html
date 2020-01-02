@@ -10,6 +10,8 @@
     <h2>List of Patients</h2>
     <!--A container for all the insurer's Clients-->
     <ul id="patient_list"></ul>
+    <h2>Support Messages</h2>
+    <ul id="patient_messages_list"></ul>
     <p>click here to sign out</p>
     <button id="signout_btn">Sign Out</button>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
@@ -58,6 +60,11 @@
                   db.collection('patients').where('Registered_Insurer','==',insref).get().then(snapshot =>{
                     outputPatients(snapshot.docs);
                   })
+
+                  db.collection('support').where('Insurer_ID','==',insref).get().then(snapshot =>{
+                    outputMessages(snapshot.docs);
+                  })
+
                   const firstname = doc.data().First_Name;
                   const lastname = doc.data().Last_Name;
                   //Sets the Header to say welcome to the insurer by name.
