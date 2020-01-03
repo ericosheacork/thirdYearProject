@@ -28,6 +28,7 @@ const outputMessages = (messagedata) =>{
     <div id="message_content">Message Content: ${support.Content}</div>
     <div id="message_status">Status: ${support.Status}</div>
     <div id="message_nature">Nature of Subject: ${support.Subject}</div><br>
+    <div id="message_nature">Sender: ${support.Patient_Email}</div><br>
 
     </li>`;
     html += entry;
