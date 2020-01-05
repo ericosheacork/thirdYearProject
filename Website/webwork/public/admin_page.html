@@ -76,12 +76,16 @@
             if(adminUser.admin){
               //Make the "make admin section" visible for the logged in admin
               adminCreate.style.display = "block";
+              signoutbut.style.display = "block";
+              loginadmin.style.display = "none";
+              
             }
           });
         }else{
           console.log('not logged in');
           //Makes sure the "make admin section" invisible for users not logged in.
           adminCreate.style.display = "none";
+          signoutbut.style.display = "none";
         }
       });
     </script>
