@@ -60,7 +60,7 @@
             //matching the user id as opposed to firebase creating a unique id automatically
             return db.collection('insurers').doc(cred.user.uid).set({
               //Insurer ID is a unique random 4 digit number.
-              Employee_ID: Math.floor(Math.random() * 9999) + 1000,
+              Employee_ID: (Math.floor(Math.random() * 9999) + 1000).toString(),
               Email: email,
               Department: dept,
               First_Name: firstname,
